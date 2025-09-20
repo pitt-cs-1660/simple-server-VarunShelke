@@ -5,6 +5,7 @@ RUN pip install uv
 WORKDIR /app
 COPY pyproject.toml uv.lock README.md ./
 COPY cc_simple_server/ ./cc_simple_server/
+COPY tests/ ./tests/
 RUN uv sync
 
 # Final stage
@@ -12,6 +13,7 @@ FROM python:3.12-slim
 COPY --from=build /app/.venv /app/.venv
 WORKDIR /app
 COPY cc_simple_server/ ./cc_simple_server/
+COPY tests/ ./tests/
 RUN useradd -m -u 1000 appuser && chown -R appuser:appuser /app
 USER appuser
 EXPOSE 8000

@@ -5,3 +5,7 @@ __pycache__/
 .gitignore
 .pytest_cache/
 tasks.db
+docker-setup.md
+rubric.md
+sqlite.md
+python-setup.md
