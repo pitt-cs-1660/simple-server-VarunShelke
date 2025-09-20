@@ -14,7 +14,8 @@ COPY --from=build /app/.venv /app/.venv
 WORKDIR /app
 COPY cc_simple_server/ ./cc_simple_server/
 COPY tests/ ./tests/
+ENV PATH="/app/.venv/bin:$PATH"
 RUN useradd -m -u 1000 appuser && chown -R appuser:appuser /app
 USER appuser
 EXPOSE 8000
-CMD ["/app/.venv/bin/uvicorn", "cc_simple_server.server:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "cc_simple_server.server:app", "--host", "0.0.0.0", "--port", "8000"]
