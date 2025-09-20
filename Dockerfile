@@ -4,8 +4,8 @@ FROM python:3.12 AS build
 RUN pip install uv
 WORKDIR /app
 COPY cc_simple_server/ ./cc_simple_server/
+COPY pyproject.toml uv.lock ./
 RUN uv sync --frozen
-COPY pyproject.toml uv.lock README.md ./
 
 # Final stage
 FROM python:3.12-slim
